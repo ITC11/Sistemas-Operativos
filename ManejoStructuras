@@ -1,0 +1,55 @@
+#include <stdlib.h>
+#include <time.h>
+#include <stdlib.h>
+#include <sys/ipc.h>
+#include <stdio.h>
+#include <sys/sem.h>
+#include <sys/types.h>
+#include <sys/shm.h>
+#include <string.h>
+
+
+struct trabajador{
+	char nombre[30];
+	char apellidoP[30];
+	char apellidoM[30];
+	int edad;
+	float salario;
+};
+struct trabajador persona;
+
+void MostrarInfo(struct trabajador *p);
+
+int main(){
+	
+	int opcion = 1;
+	struct trabajador *trbj;
+	trbj = &persona;
+
+	while(opcion == 1){
+	
+		printf("Ingrese Nombre del Trabajador: \n");
+		scanf("%s",persona.nombre);
+		printf("Ingrese Apellido Paterno del Trabajador: \n");
+		scanf("%s",persona.apellidoP);
+		printf("Ingrese Apellido Materno del Trabajador: \n");
+		scanf("%s",persona.apellidoM);
+		printf("Ingrese Edad del Trabajador: \n");
+		scanf("%i",&persona.edad);
+		printf("Ingrese Salario del Trabajador: \n");
+		scanf("%f",&persona.salario);
+
+		MostrarInfo(trbj);
+		printf("\n\n 1. Agregar, 2.Terminar \n");
+		scanf("%i",&opcion);
+	}
+}
+
+void MostrarInfo(struct trabajador *p)
+   {
+    	printf("\n%s ", p -> nombre);
+    	printf("%s ", p -> apellidoP);
+	printf("%s ", p -> apellidoM);
+    	printf("%d\n", p -> edad);
+	printf("%f", p -> salario);
+   }
